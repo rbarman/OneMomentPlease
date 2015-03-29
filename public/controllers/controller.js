@@ -18,7 +18,6 @@ myApp.controller('SignUpCtrl',['$scope','$http', function($scope, $http) {
 	// $scope.credentials will store information regarding user sign up. 
 
 	$scope.createNewAccount = function(){
-		$scope.credentials.dob = new Date();
 		console.log("controller received : ");
 		console.log("firstName : " + $scope.credentials.firstName);
 		console.log("lastName : " + $scope.credentials.lastName);
