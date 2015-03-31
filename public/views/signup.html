@@ -4,13 +4,13 @@
 </head>
 
 <body>
-	<div ng-controller = "SignUpCtrl">
+	<div ng-controller = "SignUpCtrl" class = "container">
 
 		<div class = "container">
 
 			<h1 class = "text-center"> Sign Up </h1>
 
-			<form ng-submit="submit()" ng-controller="SignUpCtrl">
+			<form ng-submit="submit(createNewAccount(credentials))" ng-controller="SignUpCtrl">
 				<!-- TODO : form validation -->
 				<br>
 				<br> <!-- smh -->
@@ -56,13 +56,12 @@
 
 					<br>
 
-					<button class = "btn btn-primary btn-block" ng-click = "createNewAccount()"> Create Account</button>
+					<button type = "submit" class = "btn btn-primary btn-block"> Create Account</button>
 
 				</form>
 			</div>
 
 			<div class="col-md-4"></div>
-
 
 		</div>
 	</div>

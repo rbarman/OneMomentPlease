@@ -4,7 +4,7 @@ myApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
     when('/SignUp',{
-    	templateUrl:'./signup.html',
+    	templateUrl:'../views/signup.html',
     	controller: 'SignUpCtrl'
     }).
     otherwise({
