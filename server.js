@@ -12,6 +12,13 @@ app.post('/SignUp', function(req,res){
 	res.status(200).send("success");
 });	
 
+app.post('/LogIn', function(req, res){
+	console.log("server received post request to /LogIn");
+	console.log(req.body);
+	// check if username and password match and send appropriate message back to controller
+	res.status(200).send("success");
+});
+
 var port = 2000;
 app.listen(port, function(){
 	console.log("http://127.0.0.1:" + port);

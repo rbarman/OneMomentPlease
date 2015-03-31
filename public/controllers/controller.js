@@ -32,20 +32,45 @@ myApp.service('SignUpService',function($http){
 });
 
 myApp.service('LogInService', function($http){
-  this.logIn = function(credentials){
+
+  this.logIn = function(credentials,callback){
     console.log(credentials);
     $http.post('LogIn', credentials)
       .success(function(response){
         console.log(response);
+        // TEMPORARY : callback will set the the current logged in user to username.
+        // try to return user and use a javascript promise in controller.
+        callback();
       })
       .error(function(response){
         console.log(response);
       });
   };
+
+  // TODO
+  this.isLoggedIn = function(){
+
+  };
+
 });
 
 // controllers
-myApp.controller('SignUpCtrl',['$scope','$http','SignUpService', function($scope, $http, SignUpService) {
+myApp.controller('MainCtrl',['$scope',function($scope){
+
+  $scope.currentUser = null;
+
+  $scope.setCurrentUser = function (user) {
+    $scope.currentUser = user;
+  };
+
+  $scope.printCurrentUser = function(){
+    console.log($scope.currentUser);
+  }
+
+}]);
+
+// all other controllers extend from MainCtrl
+myApp.controller('SignUpCtrl',['$scope','SignUpService', function($scope, SignUpService) {
 
 	// $scope.credentials will store information regarding user sign up. 
   $scope.credentials = {
@@ -63,7 +88,7 @@ myApp.controller('SignUpCtrl',['$scope','$http','SignUpService', function($scope
 	};
 }]);
 
-myApp.controller('LogInCtrl',['$scope','$http','LogInService', function($scope, $http, LogInService){
+myApp.controller('LogInCtrl',['$scope','LogInService', function($scope, LogInService){
   
   // $scope.credentials will store information regarding user log in
   $scope.credentials = {
@@ -71,6 +96,11 @@ myApp.controller('LogInCtrl',['$scope','$http','LogInService', function($scope, 
     password:''
   };
   $scope.logIn = function() {
-    LogInService.logIn($scope.credentials);
-  }
+    LogInService.logIn($scope.credentials, function(){
+      // this call back is only called on success...
+        // TODO use javascript promise to be more elegant. 
+      $scope.setCurrentUser($scope.credentials.username);
+      $scope.printCurrentUser();
+    });
+  };
 }]);
