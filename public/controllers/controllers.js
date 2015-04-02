@@ -10,7 +10,7 @@ myApp.controller('MainCtrl',['$scope',function($scope){
 
   $scope.printCurrentUser = function(){
     console.log($scope.currentUser);
-  }
+  };
 
 }]);
 

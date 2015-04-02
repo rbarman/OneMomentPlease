@@ -9,60 +9,57 @@
 		<div class = "container">
 
 			<h1 class = "text-center"> Sign Up </h1>
-
-			<form ng-submit="submit(createNewAccount(credentials))">
-				<!-- TODO : form validation -->
+				
 				<br>
 				<br> <!-- smh -->
 
 				<div class="col-md-4"></div>
-
+				
 				<!-- center column -->
 				<div class="col-md-4">
+					<form ng-submit="submit(createNewAccount(credentials))">
+						<!-- TODO : form validation -->
+						<div class="row">
+							<input type="text" class="form-control" ng-model="credentials.firstName" placeHolder="First Name"/>
+						</div>
 
-					<div class="row">
-						<input type="text" class="form-control" ng-model="credentials.firstName" placeHolder="First Name"/>
-					</div>
+						<div class="row">
+							<input type="text" class="form-control" ng-model="credentials.lastName" placeHolder="Last Name"/>
+						</div>
 
-					<div class="row">
-						<input type="text" class="form-control" ng-model="credentials.lastName" placeHolder="Last Name"/>
-					</div>
+						<div class="row">
+							<input type="text" class="form-control" ng-model="credentials.username" placeHolder="Username"/>
+						</div>
 
-					<div class="row">
-						<input type="text" class="form-control" ng-model="credentials.username" placeHolder="Username"/>
-					</div>
+						<div class="row">
+							<input type="email" class="form-control" ng-model="credentials.email" placeHolder = "Email" />
 
-					<div class="row">
-						<input type="email" class="form-control" ng-model="credentials.email" placeHolder = "Email" />
+						</div>
+						<div class = "row">
+							<input type="password" class="form-control" ng-model="credentials.password" placeHolder = "Password" />
+						</div>
 
-					</div>
-					<div class = "row">
-						<input type="password" class="form-control" ng-model="credentials.password" placeHolder = "Password" />
-					</div>
+						<div>
+							<br>
+							<label> Date Of Birth </label>
+								<datepicker ng-model="credentials.dob" min-date="minDate" show-weeks="true" class="well well-sm"></datepicker>
+						</div>
 
-					<div>
+						<div>
+							<select class="form-control" ng-model="credentials.gender">
+								<option value="" disabled selected>Gender</option>
+								<option value="Male">Male</option>
+								<option value="Female">Female</option>
+							</select>
+						</div>
+
 						<br>
-						<label> Date Of Birth </label>
-							<datepicker ng-model="credentials.dob" min-date="minDate" show-weeks="true" class="well well-sm"></datepicker>
-					</div>
 
-					<div>
-						<select class="form-control" ng-model="credentials.gender">
-							<option value="" disabled selected>Gender</option>
-							<option value="Male">Male</option>
-							<option value="Female">Female</option>
-						</select>
-					</div>
-
-					<br>
-
-					<button type = "submit" class = "btn btn-primary btn-block"> Create Account</button>
-
-				</form>
-			</div>
-
-			<div class="col-md-4"></div>
-
+						<button type = "submit" class = "btn btn-primary btn-block"> Create Account</button>
+					</form>
+				</div>
+				
+				<div class="col-md-4"></div>
 		</div>
 	</div>
 </body>
