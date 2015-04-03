@@ -23,7 +23,7 @@ app.post('/LogIn', function(req, res){
 	res.status(200).send("success");
 });
 
-var port = 2000;
+var port = process.env.PORT || 5000;
 app.listen(port, function(){
 	console.log("http://127.0.0.1:" + port);
 })
