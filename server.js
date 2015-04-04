@@ -17,8 +17,7 @@ app.post('/SignUp', function(req,res){
 
 		var collection = db.collection('users');
 
-		collection.count( {email : req.body.email }, function(err, count) {
-			console.log(count);
+		collection.count( {email : req.body.email }, function(err, count) { //checks if email already exists in db
 			if(count == 0) {
 			// insert req.body elements (req.body.firstName , etc) into a mongodb collection
 
@@ -63,7 +62,26 @@ app.post('/SignUp', function(req,res){
 app.post('/LogIn', function(req, res){
 	console.log("server received post request to /LogIn");
 	console.log(req.body);
-	// check if username and password match 
+	// check if email and password match
+	MongoClient.connect('mongodb://uniqueusername:unique6password@ds061371.mongolab.com:61371/omp_db', function (err, db) {
+
+		var collection = db.collection('users');
+
+		collection.count( {email : req.body.email, password : req.body.password}, function(err, count) {
+			
+
+			if(count == 0) { // no record found with the email password combination
+				res.status(400).send("failure: email and password do not match");
+				console.log("failure: email and password do not match")
+			}
+			else {
+				res.status(200).send("success: LogIn successful");
+				console.log("success: LogIn successful");
+			}
+
+		});
+	});
+
 		// send appropriate message back to controller
 		res.status(200).send("success");
 	});

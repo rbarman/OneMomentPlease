@@ -21,7 +21,6 @@ myApp.controller('SignUpCtrl',['$scope','SignUpService', function($scope, SignUp
   $scope.credentials = {
     firstName: '',
     lastName: '',
-    username: '',
     email: '',
     password: '',
     dob: '',
