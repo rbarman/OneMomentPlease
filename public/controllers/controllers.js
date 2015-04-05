@@ -43,7 +43,7 @@ myApp.controller('LogInCtrl',['$scope','LogInService', function($scope, LogInSer
     LogInService.logIn($scope.credentials, function(){
       // this call back is only called on success...
         // TODO use javascript promise to be more elegant. 
-      $scope.setCurrentUser($scope.credentials.username);
+      $scope.setCurrentUser($scope.credentials.email);
       $scope.printCurrentUser();
     });
   };
