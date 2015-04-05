@@ -35,12 +35,14 @@
 							<input type="password" class="form-control" ng-model="credentials.password" placeHolder = "Password" />
 						</div>
 
-						<div>
-							<br>
-							<label> Date Of Birth </label>
-								<datepicker ng-model="credentials.dob" min-date="minDate" show-weeks="true" class="well well-sm"></datepicker>
-						</div>
+						<br>
 
+						<label> Date Of Birth </label>
+
+						<select ng-model="selectedMonth" ng-options="label for label in months"></select> 
+						<select ng-model="selectedDay" ng-options="label for label in days"></select> 
+						<select ng-model="selectedYear" ng-options="label for label in years"></select> 
+						
 						<div>
 							<select class="form-control" ng-model="credentials.gender">
 								<option value="" disabled selected>Gender</option>

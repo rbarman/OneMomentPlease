@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp',['ui.bootstrap','ngRoute','toaster']);
+var myApp = angular.module('myApp',['ngRoute','toaster']);
 
 myApp.config(['$routeProvider',
   function($routeProvider) {
