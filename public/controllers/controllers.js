@@ -37,11 +37,7 @@ myApp.controller('SignUpCtrl',['$scope','SignUpService', function($scope, SignUp
   };
 
 	$scope.createNewAccount = function(){
-    console.log($scope.selectedMonth);
-    console.log($scope.selectedDay);
-    console.log($scope.selectedYear);
     $scope.credentials.dob = $scope.selectedMonth + ' ' + $scope.selectedDay + ' ' + $scope.selectedYear;
-    console.log($scope.credentials.dob);
     SignUpService.signUp($scope.credentials);
 	};
 }]);

@@ -9,7 +9,7 @@ Currently hosted @ http://your-moment-today.herokuapp.com/
 Using: 
 
     Node JS
-      - Express, body-parser, jwt
+      - Express, body-parser, mongodb modules
     Angular JS
     MongoDB
     Bootstrap
