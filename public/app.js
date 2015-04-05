@@ -12,6 +12,6 @@ myApp.config(['$routeProvider',
       controller: 'LogInCtrl'
     }).
     otherwise({
-      redirectTo:'/SignUp'
+      redirectTo:'/LogIn'
     });
 }]);

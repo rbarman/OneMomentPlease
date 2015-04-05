@@ -32,7 +32,7 @@ myApp.controller('SignUpCtrl',['$scope','SignUpService', function($scope, SignUp
 	};
 }]);
 
-myApp.controller('LogInCtrl',['$scope','LogInService', function($scope, LogInService){
+myApp.controller('LogInCtrl',['$scope','$location','LogInService', function($scope, $location, LogInService){
   
   // $scope.credentials will store information regarding user log in
   $scope.credentials = {
@@ -47,4 +47,9 @@ myApp.controller('LogInCtrl',['$scope','LogInService', function($scope, LogInSer
       $scope.printCurrentUser();
     });
   };
+
+  $scope.switchToSignUp = function(){
+    $location.url('/SignUp');
+  };
+
 }]);
