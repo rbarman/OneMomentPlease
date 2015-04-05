@@ -1,19 +1,22 @@
 var myApp = angular.module('myApp');
 
-myApp.service('SignUpService',function($http){
+myApp.service('SignUpService',function($http, $location, toaster){
   this.signUp = function(credentials){
     console.log(credentials);
     $http.post('/SignUp', credentials)
      .success(function(response){
+
+        $location.url('/LogIn'); // temporary... 
        console.log(response);
     })
       .error(function(response){
         console.log(response);
+        toaster.pop('error', "Failure", "Email is already in use");
     });
   };
 });
 
-myApp.service('LogInService', function($http){
+myApp.service('LogInService', function($http, toaster){
 
   this.logIn = function(credentials,callback){
     console.log(credentials);
@@ -26,6 +29,7 @@ myApp.service('LogInService', function($http){
       })
       .error(function(response){
         console.log(response);
+        toaster.pop('error', "Failure", "email and password do not match");
       });
   };
 

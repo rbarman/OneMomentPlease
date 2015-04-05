@@ -45,6 +45,7 @@ myApp.controller('LogInCtrl',['$scope','$location','LogInService', function($sco
         // TODO use javascript promise to be more elegant. 
       $scope.setCurrentUser($scope.credentials.email);
       $scope.printCurrentUser();
+      $location.url('/Profile');
     });
   };
 
@@ -52,4 +53,8 @@ myApp.controller('LogInCtrl',['$scope','$location','LogInService', function($sco
     $location.url('/SignUp');
   };
 
+}]);
+
+myApp.controller('ProfileCtrl',['$scope', function($scope){
+  
 }]);

@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp',['ui.bootstrap','ngRoute']);
+var myApp = angular.module('myApp',['ui.bootstrap','ngRoute','toaster']);
 
 myApp.config(['$routeProvider',
   function($routeProvider) {
@@ -10,6 +10,10 @@ myApp.config(['$routeProvider',
     when('/LogIn',{
       templateUrl:'views/login.html',
       controller: 'LogInCtrl'
+    }).
+    when('/Profile',{
+      templateUrl:'views/profile.html',
+      controller: 'ProfileCtrl'
     }).
     otherwise({
       redirectTo:'/LogIn'
