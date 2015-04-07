@@ -55,7 +55,11 @@ myApp.controller('ProfileCtrl',['$scope', 'UserService', function($scope, UserSe
   UserService.getProfile(function(response){
     console.log("success callback");
     console.log(response);
-    $scope.message = response.message;
+    $scope.firstName = response.firstName;
+    $scope.lastName = response.lastName;
+    $scope.email = response.email;
+    $scope.dob = response.dob;
+    $scope.gender = response.gender;
   });
 
 }]);

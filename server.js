@@ -20,8 +20,18 @@ app.set('jwtTokenSecret', secret);
 var omp_db_url = 'mongodb://uniqueusername:unique6password@ds061371.mongolab.com:61371/omp_db';
 
 app.get('/Profile', function(req, res){
-	res.json({message : "You have logged in"});
-	
+
+	//TODO : add error catching
+	MongoClient.connect(omp_db_url, function(err, db){
+		var collection = db.collection('users');
+		// find document with given email and return to controller
+		collection.findOne({email : req.user.email}, function(err,document){
+			if(!err){
+				res.json(document);
+			}
+		});
+	});
+
 });
 
 // post request to /SignUp
