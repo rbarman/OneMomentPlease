@@ -24,19 +24,20 @@ myApp.service('LogInService', function($http, $location, $window, toaster){
       .success(function(response){
         console.log("our token : ");
         console.log(response);
-        $window.sessionStorage.token = response.token;
+        $window.localStorage.token = response.token;
         $location.url('/Profile');
       })
       .error(function(response){
         console.log(response);
         toaster.pop('error', "Failure", "email and password do not match");
-        delete $window.sessionStorage.token;
+        delete $window.localStorage.token;
       });
   };
 
 });
 
-myApp.service('UserService', function($http, $location){
+// TODO : add logIn to UserService?
+myApp.service('UserService', function($http, $location, $window){
 
   this.getProfile = function(callback){
     console.log("finna get the profile!");
@@ -51,14 +52,21 @@ myApp.service('UserService', function($http, $location){
       // UserService.getProfile() should ideally just get the profile without business logic.
     });
   }
+
+  this.logOut = function(){
+    delete $window.localStorage.token;
+    $location.url('/LogIn');
+    console.log("logging out");
+  };
+
 });
 
 myApp.factory('authInterceptor', function ($rootScope, $q, $window, $location) {
   return {
     request: function (config) {
       config.headers = config.headers || {};
-      if ($window.sessionStorage.token) {
-        config.headers.Authorization = 'Bearer ' + $window.sessionStorage.token;
+      if ($window.localStorage.token) {
+        config.headers.Authorization = 'Bearer ' + $window.localStorage.token;
       }
       return config;
     },

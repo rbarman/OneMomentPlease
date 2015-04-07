@@ -28,8 +28,11 @@ myApp.controller('SignUpCtrl',['$scope','SignUpService', function($scope, SignUp
 	};
 }]);
 
-myApp.controller('LogInCtrl',['$scope','$location','LogInService', function($scope, $location, LogInService){
+myApp.controller('LogInCtrl',['$scope','$location','$window','LogInService', function($scope, $location, $window, LogInService){
   
+  if($window.localStorage.token)
+    $location.url('/Profile');
+
   // $scope.credentials will store information regarding user log in
   $scope.credentials = {
     username:'',
@@ -61,5 +64,9 @@ myApp.controller('ProfileCtrl',['$scope', 'UserService', function($scope, UserSe
     $scope.dob = response.dob;
     $scope.gender = response.gender;
   });
+
+  $scope.logOut = function(){
+    UserService.logOut();
+  };
 
 }]);

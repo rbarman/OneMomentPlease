@@ -2,11 +2,37 @@
 <body ng-controller = "ProfileCtrl">
 
 	<div class = "container">
-		<div class = "row"> {{firstName}} </div>
-		<div class = "row"> {{lastName}} </div>
-		<div class = "row"> {{email}} </div>
-		<div class = "row"> {{gender}}</div>
-		<div class = "row"> {{dob}}</div>
+
+		<h1 class = "text-center"> Profile </h1>
+
+		<div class = "row">
+		    <div class="col-sm-2"> First Name : </div>
+		    <div class="col-sm-2"> {{firstName}} </div>
+		</div>
+
+		<div class = "row">
+		    <div class="col-sm-2"> Last Name : </div>
+		    <div class="col-sm-2"> {{lastName}} </div>
+		</div>
+
+		<div class = "row">
+		    <div class="col-sm-2"> Email : </div>
+		    <div class="col-sm-2"> {{email}} </div>
+		</div>
+
+		<div class = "row">
+		    <div class="col-sm-2"> Gender : </div>
+		    <div class="col-sm-2"> {{gender}} </div>
+		</div>
+
+		<div class = "row">
+		    <div class="col-sm-2"> DOB : </div>
+		    <div class="col-sm-2"> {{dob}} </div>
+		</div>
+
+		<div class = "row">
+			<button type="button" class="btn btn-link center-block" ng-click="logOut()">Log Out</button>
+		</div>
 	</div>
 </body>
 </html>
