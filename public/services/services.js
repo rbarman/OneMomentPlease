@@ -36,6 +36,22 @@ myApp.service('LogInService', function($http, $location, $window, toaster){
 
 });
 
+myApp.service('UserService', function($http, $location){
+
+  this.getProfile = function(callback){
+    console.log("finna get the profile!");
+    $http.get('/Profile')
+    .success(function(data, status, headers, config){
+      callback(data);
+    })
+    .error(function(response){
+      console.log("failure");
+      $location.url('/LogIn'); 
+      // TODO : make setting the location a part of a future failure callback on ProfilCtrl?
+      // UserService.getProfile() should ideally just get the profile without business logic.
+    });
+  }
+});
 
 myApp.factory('authInterceptor', function ($rootScope, $q, $window, $location) {
   return {

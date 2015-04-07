@@ -45,17 +45,17 @@ myApp.controller('LogInCtrl',['$scope','$location','LogInService', function($sco
 
 }]);
 
-// TODO : move this to a service
-myApp.controller('ProfileCtrl',['$scope', '$http', '$location', function($scope, $http, $location){
-  // $scope.message = "default";
+myApp.controller('ProfileCtrl',['$scope', 'UserService', function($scope, UserService){
+  $scope.message = "default";
   console.log("We are in the profile");
-  $http.get('/Profile')
-    .success(function(response){
-      $scope.message = response.message;
-    });
-    .error(function(response){
-      // TODO : need a better way to restrict views in $routeProvider ?
-      console.log("Can not access this!");
-      $location.url('/LogIn');
-    });
+
+  //TODO : make a failure callback,
+  // UserService.getProfile currently goes to /LogIn on failure. This might not be wanted in future
+
+  UserService.getProfile(function(response){
+    console.log("success callback");
+    console.log(response);
+    $scope.message = response.message;
+  });
+
 }]);

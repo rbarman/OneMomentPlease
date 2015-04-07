@@ -19,9 +19,9 @@ app.set('jwtTokenSecret', secret);
 
 var omp_db_url = 'mongodb://uniqueusername:unique6password@ds061371.mongolab.com:61371/omp_db';
 
-
 app.get('/Profile', function(req, res){
 	res.json({message : "You have logged in"});
+	
 });
 
 // post request to /SignUp
