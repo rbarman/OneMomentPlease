@@ -1,5 +1,9 @@
 var myApp = angular.module('myApp',['ngRoute','toaster']);
 
+myApp.config(function ($httpProvider) {
+  $httpProvider.interceptors.push('authInterceptor');
+});
+
 myApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.

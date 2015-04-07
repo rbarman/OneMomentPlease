@@ -1,13 +1,28 @@
+//module
 var express = require('express');
-var app = express();
 var MongoClient = require('mongodb').MongoClient;
-
-
 var bodyParser = require('body-parser');
+var expressJwt = require('express-jwt');
+var jwt = require('jsonwebtoken');
+
+// temp
+var secret = "secret";
+
+var app = express();
+
+// Client can only get /Profile endpoint with a valid token
+	// however /Profile view is not restricted -> must do in angular
+app.use('/Profile', expressJwt({secret: secret})); 
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
+app.set('jwtTokenSecret', secret);
 
 var omp_db_url = 'mongodb://uniqueusername:unique6password@ds061371.mongolab.com:61371/omp_db';
+
+
+app.get('/Profile', function(req, res){
+	res.json({message : "You have logged in"});
+});
 
 // post request to /SignUp
 app.post('/SignUp', function(req,res){
@@ -76,8 +91,10 @@ app.post('/LogIn', function(req, res){
 				console.log("failure: email and password do not match")
 			}
 			else {
-				res.status(200).send("success: LogIn successful");
+				// res.status(200).send("success: LogIn successful");
 				console.log("success: LogIn successful");
+				var token = jwt.sign(req.body, secret, { expiresInMinutes: 60*5 });
+				res.json({ token: token });
 			}
 			
 		});

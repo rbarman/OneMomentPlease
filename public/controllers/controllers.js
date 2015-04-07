@@ -1,19 +1,5 @@
 var myApp = angular.module('myApp');
 
-myApp.controller('MainCtrl',['$scope',function($scope){
-
-  $scope.currentUser = null;
-
-  $scope.setCurrentUser = function (user) {
-    $scope.currentUser = user;
-  };
-
-  $scope.printCurrentUser = function(){
-    console.log($scope.currentUser);
-  };
-
-}]);
-
 // all other controllers extend from MainCtrl
 myApp.controller('SignUpCtrl',['$scope','SignUpService', function($scope, SignUpService) {
 
@@ -50,13 +36,7 @@ myApp.controller('LogInCtrl',['$scope','$location','LogInService', function($sco
     password:''
   };
   $scope.logIn = function() {
-    LogInService.logIn($scope.credentials, function(){
-      // this call back is only called on success...
-        // TODO use javascript promise to be more elegant. 
-      $scope.setCurrentUser($scope.credentials.email);
-      $scope.printCurrentUser();
-      $location.url('/Profile');
-    });
+    LogInService.logIn($scope.credentials);
   };
 
   $scope.switchToSignUp = function(){
@@ -65,6 +45,17 @@ myApp.controller('LogInCtrl',['$scope','$location','LogInService', function($sco
 
 }]);
 
-myApp.controller('ProfileCtrl',['$scope', function($scope){
-  
+// TODO : move this to a service
+myApp.controller('ProfileCtrl',['$scope', '$http', '$location', function($scope, $http, $location){
+  // $scope.message = "default";
+  console.log("We are in the profile");
+  $http.get('/Profile')
+    .success(function(response){
+      $scope.message = response.message;
+    });
+    .error(function(response){
+      // TODO : need a better way to restrict views in $routeProvider ?
+      console.log("Can not access this!");
+      $location.url('/LogIn');
+    });
 }]);
