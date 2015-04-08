@@ -70,3 +70,10 @@ myApp.controller('ProfileCtrl',['$scope', 'UserService', function($scope, UserSe
   };
 
 }]);
+
+myApp.controller('VerifyCtrl', ['$scope', '$routeParams','VerifyService', function($scope, $routeParams, VerifyService){
+
+  $scope.verificationCode = $routeParams.param;
+  VerifyService.verifyCode($scope.verificationCode);
+
+}]);

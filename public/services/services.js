@@ -78,3 +78,19 @@ myApp.factory('authInterceptor', function ($rootScope, $q, $window, $location) {
     }
   };
 });
+
+myApp.service('VerifyService', function($http){
+
+  this.verifyCode = function(verificationCode){
+
+    console.log("in verifyService");
+
+    $http.post('Verify',verificationCode)
+      .success(function(response){
+        console.log(response);
+      })
+      .error(function(response){
+        console.log(response);
+      });
+    };
+});

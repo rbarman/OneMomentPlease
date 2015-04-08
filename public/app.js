@@ -19,6 +19,10 @@ myApp.config(['$routeProvider',
       templateUrl:'views/profile.html',
       controller: 'ProfileCtrl'
     }).
+    when('/Verify/:param', {
+      templateUrl:'views/verify.html',
+      controller: 'VerifyCtrl'
+    }).
     otherwise({
       redirectTo:'/LogIn'
     });
