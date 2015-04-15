@@ -1,3 +1,6 @@
+- Add extra field of Security question.
+
+
 -	As a developer, I’d like to hash the password provided by the user and then add it to the db.
 - As a developer, I’d like to update the information of user in the database, upon request.
 - As a developer, I'd like to let the user go through email verification.
@@ -9,4 +12,13 @@
     - If sign in request && verified = false => land on login page with "resend verification"  message
 
 - Migrate to neo4j
-  -Rebuild server code
+    - Rebuild server code
+  
+  
+- As a user, I’d like to recover my password via email.
+    - Send email to user with URL redirects to "password change page"
+    - Prompt for security, new password and confirm password.
+    - If security question matches, change password in db
+    - Send an email with confirmation of change
+    
+- As a user, I’d like to update personal information (Name, DOB, Profile Picture, Interests) on my profile page
