@@ -1,0 +1,12 @@
+-	As a developer, I’d like to hash the password provided by the user and then add it to the db.
+- As a developer, I’d like to update the information of user in the database, upon request.
+- As a developer, I'd like to let the user go through email verification.
+    - Send a confirmation email to user with a unique ID in the URL
+    - Expect a response
+    - If response matches a user, then verified = true for the given user
+    
+- As a developer, I'd like to prevent the user from Signing in if account is not verified.
+    - If sign in request && verified = false => land on login page with "resend verification"  message
+
+- Migrate to neo4j
+  -Rebuild server code
