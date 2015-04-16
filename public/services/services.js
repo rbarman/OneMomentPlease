@@ -40,7 +40,6 @@ myApp.service('LogInService', function($http, $location, $window, toaster){
 myApp.service('UserService', function($http, $location, $window){
 
   this.getProfile = function(callback){
-    console.log("finna get the profile!");
     $http.get('/Profile')
     .success(function(data, status, headers, config){
       callback(data);
@@ -51,7 +50,7 @@ myApp.service('UserService', function($http, $location, $window){
       // TODO : make setting the location a part of a future failure callback on ProfilCtrl?
       // UserService.getProfile() should ideally just get the profile without business logic.
     });
-  }
+  };
 
   this.logOut = function(){
     delete $window.localStorage.token;

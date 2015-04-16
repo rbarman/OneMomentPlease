@@ -1,6 +1,5 @@
 var myApp = angular.module('myApp');
 
-// all other controllers extend from MainCtrl
 myApp.controller('SignUpCtrl',['$scope','SignUpService', function($scope, SignUpService) {
 
   // TODO : Find a better place to store this + make scope.years more dynamic(?)
@@ -28,11 +27,15 @@ myApp.controller('SignUpCtrl',['$scope','SignUpService', function($scope, SignUp
 	};
 }]);
 
-myApp.controller('LogInCtrl',['$scope','$location','$window','LogInService', function($scope, $location, $window, LogInService){
+myApp.controller('LogInCtrl',['$scope','$location','LogInService','UserService', function($scope, $location,LogInService, UserService){
   
-  if($window.localStorage.token)
+  // This check is not super necessary as ideally a logged in user would not go to the log in page
+  UserService.getProfile(function(response){
+    // if successful in getting profile, Our token is valid
+    // redirect to /Profile because it does not make sense to go to log in page if already logged in. 
     $location.url('/Profile');
-
+  });
+  
   // $scope.credentials will store information regarding user log in
   $scope.credentials = {
     username:'',
@@ -50,7 +53,6 @@ myApp.controller('LogInCtrl',['$scope','$location','$window','LogInService', fun
 
 myApp.controller('ProfileCtrl',['$scope', 'UserService', function($scope, UserService){
   $scope.message = "default";
-  console.log("We are in the profile");
 
   //TODO : make a failure callback,
   // UserService.getProfile currently goes to /LogIn on failure. This might not be wanted in future
