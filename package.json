@@ -4,7 +4,6 @@
   "dependencies": {
     "body-parser": "1.12.2",
     "express": "^4.2.0",
-    "mongodb" : "2.0.25",
     "express-jwt": "~0.2.1",
     "jsonwebtoken" : "1.2.0",
     "seraph" : "0.11.2"

@@ -9,17 +9,23 @@ Currently hosted @ http://your-moment-today.herokuapp.com/
 Using: 
 
     Node JS
-        - Express, body-parser, mongodb, express-jwt, jsonwebtoken modules
+        - Express, body-parser, seraph, express-jwt, jsonwebtoken modules
     Angular JS
         - Token Based Authentication
-    MongoDB
+    Neo4j
     Bootstrap
+    
+Hosting
+
+    Heroku
+    graphenedb
     
 
 Learning: 
 
     Mean Stack Development
     Token Based Authentication within a Single Page Application
+    Graph Databases
   
 Goals :
 
