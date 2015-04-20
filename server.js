@@ -1,6 +1,5 @@
 //module
 var express = require('express');
-var MongoClient = require('mongodb').MongoClient;
 var bodyParser = require('body-parser');
 var expressJwt = require('express-jwt');
 var jwt = require('jsonwebtoken');
@@ -17,8 +16,6 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 app.set('jwtTokenSecret', secret);
 
-var omp_db_url = 'mongodb://uniqueusername:unique6password@ds061371.mongolab.com:61371/omp_db';
-
 var db = require("seraph")({
 	server: "http://ompdb.sb05.stations.graphenedb.com:24789/",
 	user: "omp_db",
@@ -27,24 +24,27 @@ var db = require("seraph")({
 
 app.get('/Profile', function(req, res){
 
-	// //TODO : add error catching
-	// MongoClient.connect(omp_db_url, function(err, db){
-	// 	var collection = db.collection('users');
-	// 	// find document with given email and return to controller
-	// 	collection.findOne({email : req.user.email}, function(err,document){
-	// 		if(!err){
-	// 			res.json(document);
-	// 		}
-	// 	});
-	// });
+	console.log("server received post request to /Profile");
+	console.log(req.body);
 
+	var predicate = { email: req.user.email};
+	db.find(predicate, [false, 'User'],function (err, objs) {
+		if (err) {
+			console.log(err);
+			console.log("Error on finding any nodes with given email.");
+			res.status(500).send("failure: new user not added");
+		}
+		else{
+			console.log(objs);
+			res.json(objs);
+		}
+	});	
 });
 
 // post request to /SignUp
 app.post('/SignUp', function(req,res){
 
 	console.log("server received post request to /SignUp");
-	console.log(req.body);
 
 	// need to check if there is a User with the email provided. 
 	var predicate = { email: req.body.email};
@@ -99,11 +99,14 @@ app.post('/LogIn', function(req, res){
 
 	// check if email and password match
 	var cypher = "MATCH(n) WHERE n.password ='" + req.body.password + "' AND n.email = '" + req.body.email + "' return n";
+
 	db.query(cypher, function(err, result){
+
 		if(err){
 			console.log(err);
 			console.log("Error on finding any nodes with given email and password.");
 			res.status(500).send("failure: new user not added");
+		
 		}
 		else{
 			if(result.length == 0){

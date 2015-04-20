@@ -61,12 +61,13 @@ myApp.controller('ProfileCtrl',['$scope', 'UserService', function($scope, UserSe
 
   UserService.getProfile(function(response){
     console.log("success callback");
-    console.log(response);
-    $scope.firstName = response.firstName;
-    $scope.lastName = response.lastName;
-    $scope.email = response.email;
-    $scope.dob = response.dob;
-    $scope.gender = response.gender;
+    console.log(response[0]);
+
+    $scope.firstName = response[0].firstName;
+    $scope.lastName = response[0].lastName;
+    $scope.email = response[0].email;
+    $scope.dob = response[0].dob;
+    $scope.gender = response[0].gender;
   });
 
   $scope.logOut = function(){
