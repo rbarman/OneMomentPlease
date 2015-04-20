@@ -46,26 +46,48 @@ app.post('/SignUp', function(req,res){
 	console.log("server received post request to /SignUp");
 	console.log(req.body);
 
-	db.save({ 
-		firstName: req.body.firstName, 
-		lastName: req.body.lastName, 
-		email:req.body.email, 
-		password: req.body.password,
-		dob: req.body.dob, 
-		gender:req.body.gender, 
-		question:req.body.question, 
-		answer:req.body.answer 
-	},
-
-	'User', // adding a User label
-
-	function(err, node) {
-		if (err){
+	// need to check if there is a User with the email provided. 
+	var predicate = { email: req.body.email};
+	db.find(predicate, [false, 'User'],function (err, objs) {
+		
+		if (err) {
 			console.log(err);
+			console.log("Error on finding any nodes with given email.");
+			res.status(500).send("failure: new user not added");
 		}
 		else {
-		  	res.status(200).send("success: new user added");
-			console.log("added a new user");
+
+			// objs.length is the count of Users with given email. 
+			if(objs.length == 0){
+				db.save({ 
+					firstName: req.body.firstName, 
+					lastName: req.body.lastName, 
+					email:req.body.email, 
+					password: req.body.password,
+					dob: req.body.dob, 
+					gender:req.body.gender, 
+					question:req.body.question, 
+					answer:req.body.answer 
+				},
+
+				'User', // adding a User label
+
+				function(err, node) {
+					if (err){
+						console.log(err);
+						res.status(500).send("failure: new user not added");
+						console.log("Error on saving a node.");
+					}
+					else {
+					  	res.status(200).send("success: new user added");
+						console.log("Successfully added a new user");
+					}
+				});
+			}
+			else{
+				res.status(400).send("failure: user already exists");
+				console.log("email already exists");
+			}
 		}
 	});
 });	
