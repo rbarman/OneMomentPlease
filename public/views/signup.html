@@ -17,6 +17,7 @@
 				
 				<!-- center column -->
 				<div class="col-md-4">
+
 					<form ng-submit="submit(createNewAccount(credentials))">
 						<!-- TODO : form validation -->
 						<div class="row">
@@ -37,18 +38,38 @@
 
 						<br>
 
-						<label> Date Of Birth </label>
+						<div class = "row">
+							<label> Date Of Birth </label>
+							<select ng-model="selectedMonth" ng-options="label for label in months"></select> 
+							<select ng-model="selectedDay" ng-options="label for label in days"></select> 
+							<select ng-model="selectedYear" ng-options="label for label in years"></select> 
 
-						<select ng-model="selectedMonth" ng-options="label for label in months"></select> 
-						<select ng-model="selectedDay" ng-options="label for label in days"></select> 
-						<select ng-model="selectedYear" ng-options="label for label in years"></select> 
+						</div>
 						
-						<div>
+						<div class = "row">
 							<select class="form-control" ng-model="credentials.gender">
 								<option value="" disabled selected>Gender</option>
 								<option value="Male">Male</option>
 								<option value="Female">Female</option>
 							</select>
+						</div>
+
+						<!-- <br> -->
+
+						<div class = "row">
+							<!--TODO : change option to an int if we will store questions as ints-->
+							<select class="form-control" ng-model="credentials.question">
+								<option value="" disabled selected> Choose a Security Question </option>
+								<option value ="In what town was your first job?"> In what town was your first job?</option>
+								<option value = "In what city or town did your mother and father meet?"> In what city or town did your mother and father meet? </option>
+								<option value = "What was your favorite sport in high school?"> What was your favorite sport in high school? </option>
+							</select>
+						</div>
+
+						<!-- <br> -->
+
+						<div class = "row">
+							<input type="text" class="form-control" ng-model="credentials.answer" placeHolder = "Your Answer" />
 						</div>
 
 						<br>
