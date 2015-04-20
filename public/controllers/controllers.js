@@ -18,7 +18,9 @@ myApp.controller('SignUpCtrl',['$scope','SignUpService', function($scope, SignUp
     email: '',
     password: '',
     dob: '',
-    gender: ''
+    gender: '',
+    question:'',
+    answer:''
   };
 
 	$scope.createNewAccount = function(){
