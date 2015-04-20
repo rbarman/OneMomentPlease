@@ -1,23 +1,17 @@
 //module
 var express = require('express');
 var MongoClient = require('mongodb').MongoClient;
-var request = require("request");
 var bodyParser = require('body-parser');
 var expressJwt = require('express-jwt');
 var jwt = require('jsonwebtoken');
 
-//Require the Neo4J module
-var neo4j = require('node-neo4j');
-
-// temp
+// used for setting the token, can be replaced with something else later
 var secret = "secret";
 
 var app = express();
-var host = localhost; 						//database runs on local host
-var port_neo_db = 7474; 					//default port specified for neo4j in neo4j docs
 
 // Client can only get /Profile endpoint with a valid token
-// however /Profile view is not restricted -> must do in angular
+// Use similar line below for other restricted endpoints
 app.use('/Profile', expressJwt({secret: secret})); 
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
@@ -25,12 +19,11 @@ app.set('jwtTokenSecret', secret);
 
 var omp_db_url = 'mongodb://uniqueusername:unique6password@ds061371.mongolab.com:61371/omp_db';
 
-//This is the URL where we will POST our data to fire the cypher query. This is specified in Neo4j docs.
-var httpUrlForTransaction = 'http://' + host + ':' + port_neo_db + '/db/data/transaction/commit';
-
-//Create a db object. We will using this object to work on the DB.
-db = new neo4j('http://localhost:7474');
-
+var db = require("seraph")({
+	server: "http://ompdb.sb05.stations.graphenedb.com:24789/",
+	user: "omp_db",
+	pass: "H2Kny8ISWZzuYBDaZGht"
+});
 
 app.get('/Profile', function(req, res){
 
@@ -53,71 +46,29 @@ app.post('/SignUp', function(req,res){
 	console.log("server received post request to /SignUp");
 	console.log(req.body);
 
-	MongoClient.connect(omp_db_url, function (err, db) {
+	db.save({ 
+		firstName: req.body.firstName, 
+		lastName: req.body.lastName, 
+		email:req.body.email, 
+		password: req.body.password,
+		dob: req.body.dob, 
+		gender:req.body.gender, 
+		question:req.body.question, 
+		answer:req.body.answer 
+	},
 
-		var collection = db.collection('users');
+	'User', // adding a User label
 
-		collection.count( {email : req.body.email }, function(err, count) { //checks if email already exists in db
-			if(count == 0) {
-			// insert req.body elements (req.body.firstName , etc) into a mongodb collection
-
-				collection.insert({
-					firstName:req.body.firstName,
-					lastName:req.body.lastName,
-					email: req.body.email,
-					password: req.body.password,
-					dob: req.body.dob,
-					gender: req.body.gender
-				}, function(err, docs) {
-					
-					if(!err) {
-						// 200 is OK
-						res.status(200).send("success: new user added");
-						console.log("added record!");
-					}
-					else {
-						//500 is internal error
-						res.status(500).send("failure: new user not added");
-						console.log("failure: new user not added");
-					}
-
-				});
-
-			}
-
-			// send appropriate message back (if email are really unique)
-
-			else {
-				//400 is Bad request
-				res.status(400).send("failure: user already exists");
-				console.log("email id already exists");
-			}
-		})
-
+	function(err, node) {
+		if (err){
+			console.log(err);
+		}
+		else {
+		  	res.status(200).send("success: new user added");
+			console.log("added a new user");
+		}
 	});
-
 });	
-
-
-//Run raw cypher with params
-db.cypherQuery(
-  'CREATE (somebody:Person { name: {name}, from: {company}, age: {age} }) RETURN somebody',
-  {
-    name: 'Ghuffran',
-    company: 'Modulus',
-    age: ~~(Math.random() * 100) //generate random age
-  }, function (err, result) {
-    if (err) {
-      return console.log(err);
-    }
-    console.log(result.data); // delivers an array of query results
-    console.log(result.columns); // delivers an array of names of objects getting returned
-  }
-);
-
-
-
-
 
 // post request to /LogIn
 app.post('/LogIn', function(req, res){
