@@ -7,29 +7,33 @@
 <body>
 	<div ng-controller = "LogInCtrl">
 
-		<h1 class = "text-center"> Log In </h1>
+		<h1 class = "text-center"> One Moment Please </h1>
 
-		<br>
 		<br>
 
 		<div class="col-md-4"></div>
 
 		<div class="col-md-4">
+
 			<form ng-submit = "submit(logIn(credentials))">
 
-				<div class="row">
-					<input type="email" class="form-control" ng-model="credentials.email" placeHolder="email"/>
+				<div class="row input-group">
+					<span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+					<input type="email" class="form-control" ng-model="credentials.email" placeHolder="Email"/>
 				</div>
 						
 				<br>
 
-				<div class="row">
+				<div class="row input-group">
+				  	<span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
 					<input type="password" class="form-control" ng-model="credentials.password" placeHolder="Password"/>
 				</div>
 
 				<br>
 
-				<button type = "submit" class = "btn btn-primary btn-block"> Log In</button>
+				<div class = "row">
+					<button type = "submit" class = "btn btn-primary btn-block"> Log In</button>
+				</div>
 
 		      	<button type="button" class="btn btn-link center-block" ng-click="switchToSignUp()">Sign Up If you do not have an account</button>
 
@@ -40,7 +44,6 @@
 		</div>
 
 		<div class="col-md-4"></div>
-
 	</div>
 
 </body>

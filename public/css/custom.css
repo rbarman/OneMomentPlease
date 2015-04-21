@@ -1,0 +1,13 @@
+.btn {
+    border-radius: 50px;  
+}
+
+body {
+	/*background-color: #CCEEFF;*/
+	background-image: url("/images/upfeathers.png");
+	/* check http://subtlepatterns.com/ for others */
+}
+
+h1{
+	font-family: Century Gothic, sans-serif;
+}
