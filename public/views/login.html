@@ -17,22 +17,22 @@
 
 			<form name = "userForm" ng-submit = "logIn()" novalidate>
 
+				<!-- Email Form -->
 				<div class="row input-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
 
 					<span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
 					<input type="email" name = "email" class="form-control" ng-model="credentials.email" required placeHolder="Email"/>
-
-					<p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a valid email.</p>
-
 				</div>
-						
+				<p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a valid email.</p>
+
 				<br>
 
+				<!-- Password Form -->
 				<div class="row input-group" ng-class="{ 'has-error' : userForm.password.$invalid && !userForm.password.$pristine }">
 				  	<span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
 					<input type="password" name = "password" class="form-control" ng-model="credentials.password" required placeHolder="Password"/>
-					<p ng-show="userForm.password.$invalid && !userForm.password.$pristine" class="help-block">A password is required.</p>
 				</div>
+				<p ng-show="userForm.password.$invalid && !userForm.password.$pristine" class="help-block">A password is required.</p>
 
 				<br>
 
