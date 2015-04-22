@@ -44,7 +44,10 @@ myApp.controller('LogInCtrl',['$scope','$location','LogInService','UserService',
     password:''
   };
   $scope.logIn = function() {
-    LogInService.logIn($scope.credentials);
+    if ($scope.userForm.$valid) {
+        console.log("form to login is valid");
+        LogInService.logIn($scope.credentials);
+      }
   };
 
   $scope.switchToSignUp = function(){

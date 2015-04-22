@@ -15,24 +15,29 @@
 
 		<div class="col-md-4">
 
-			<form ng-submit = "submit(logIn(credentials))">
+			<form name = "userForm" ng-submit = "logIn()" novalidate>
 
-				<div class="row input-group">
+				<div class="row input-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
+
 					<span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
-					<input type="email" class="form-control" ng-model="credentials.email" placeHolder="Email"/>
+					<input type="email" name = "email" class="form-control" ng-model="credentials.email" required placeHolder="Email"/>
+
+					<p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a valid email.</p>
+
 				</div>
 						
 				<br>
 
-				<div class="row input-group">
+				<div class="row input-group" ng-class="{ 'has-error' : userForm.password.$invalid && !userForm.password.$pristine }">
 				  	<span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
-					<input type="password" class="form-control" ng-model="credentials.password" placeHolder="Password"/>
+					<input type="password" name = "password" class="form-control" ng-model="credentials.password" required placeHolder="Password"/>
+					<p ng-show="userForm.password.$invalid && !userForm.password.$pristine" class="help-block">A password is required.</p>
 				</div>
 
 				<br>
 
 				<div class = "row">
-					<button type = "submit" class = "btn btn-primary btn-block"> Log In</button>
+					<button type = "submit" class = "btn btn-primary btn-block" ng-disabled="userForm.$invalid"> Log In</button>
 				</div>
 
 		      	<button type="button" class="btn btn-link center-block" ng-click="switchToSignUp()">Sign Up If you do not have an account</button>
