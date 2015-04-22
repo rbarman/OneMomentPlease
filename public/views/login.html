@@ -25,16 +25,12 @@
 				</div>
 				<p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a valid email.</p>
 
-				<br>
-
 				<!-- Password Form -->
 				<div class="row input-group" ng-class="{ 'has-error' : userForm.password.$invalid && !userForm.password.$pristine }">
 				  	<span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
 					<input type="password" name = "password" class="form-control" ng-model="credentials.password" required placeHolder="Password"/>
 				</div>
 				<p ng-show="userForm.password.$invalid && !userForm.password.$pristine" class="help-block">A password is required.</p>
-
-				<br>
 
 				<div class = "row">
 					<button type = "submit" class = "btn btn-primary btn-block" ng-disabled="userForm.$invalid"> Log In</button>

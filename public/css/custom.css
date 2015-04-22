@@ -11,3 +11,8 @@ body {
 h1{
 	font-family: Century Gothic, sans-serif;
 }
+
+.ng-hide{
+	display: block!important;
+	visibility: hidden;
+}
