@@ -6,6 +6,7 @@
     "express": "^4.2.0",
     "express-jwt": "~0.2.1",
     "jsonwebtoken" : "1.2.0",
-    "seraph" : "0.11.2"
+    "seraph" : "0.11.2",
+    "bcrypt-nodejs" : "0.0.3"
   }
 }

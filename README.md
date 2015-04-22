@@ -9,7 +9,7 @@ Currently hosted @ http://your-moment-today.herokuapp.com/
 Using: 
 
     Node JS
-        - Express, body-parser, seraph, express-jwt, jsonwebtoken modules
+        - Express, body-parser, seraph, express-jwt, jsonwebtoken, bcrypt-nodejs modules
     Angular JS
         - Token Based Authentication
     Neo4j
