@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var expressJwt = require('express-jwt');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt-nodejs');
+var nodemailer = require("nodemailer");
 
 // used for setting the token, can be replaced with something else later
 var secret = "secret";
@@ -41,6 +42,8 @@ app.get('/Profile', function(req, res){
 		}
 	});	
 });
+
+//Email Verification
 
 // post request to /SignUp
 app.post('/SignUp', function(req,res){
