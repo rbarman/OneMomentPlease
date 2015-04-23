@@ -18,7 +18,7 @@ var rand,mailOptions,host,link;
 /*------------------Routing Started ------------------------*/
 
 app.get('/',function(req,res){
-    res.sendfile('index.html');
+    res.sendFile('/home/pranavpunjabi/OneMomentPlease/email_verification/index.html');
 });
 app.get('/send',function(req,res){
         rand=Math.floor((Math.random() * 100) + 54);
