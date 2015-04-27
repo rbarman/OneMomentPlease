@@ -11,18 +11,15 @@ var uuid = require('uuid');
     Here we are configuring our SMTP Server details.
     STMP is mail server which is responsible for sending and recieving email.
     */
-    var smtpTransport = nodemailer.createTransport("SMTP",{
-    	service: "Yandex",
-    	auth: {
-    		user: "OMPservice",
-    		pass: "unique6password"
-    	}
-    });
-    var rand,mailOptions,host,link;
-    /*------------------SMTP Over-----------------------------*/
+var smtpTransport = nodemailer.createTransport("SMTP",{
+	service: "MailGun",
+	auth: {
+		user: "postmaster@sandboxaac1d285a070420f976563208a2452ed.mailgun.org",
+		pass: "bdc12c4d3f90dfcb407ec81142cd68a8"
+	}
+});
 
-
-
+var rand,mailOptions,host,link;
 
 // used for setting the token, can be replaced with something else later
 var secret = "secret";
@@ -114,7 +111,8 @@ app.post('/SignUp', function(req,res){
 						link="http://localhost:5000/#/Verify/"+ verificationCode;
 
 						mailOptions={
-							from: 'OMPservice <OMPservice@yandex.com>',
+							// user will see 'OMP@omp.com via mailgun.org'
+							from: 'OMPservice<OMP@omp.com>',
 							to : req.body.email,
 							subject : "Please confirm your Email account",
 							html : "Hello,<br> Please Click on the link to verify your email.<br><a href="+link+">Click here to verify</a>" 
