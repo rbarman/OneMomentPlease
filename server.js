@@ -14,8 +14,8 @@ var uuid = require('uuid');
 var smtpTransport = nodemailer.createTransport("SMTP",{
 	service: "MailGun",
 	auth: {
-		user: "postmaster@sandboxaac1d285a070420f976563208a2452ed.mailgun.org",
-		pass: "bdc12c4d3f90dfcb407ec81142cd68a8"
+			user: "postmaster@sandboxaac1d285a070420f976563208a2452ed.mailgun.org",
+			pass: "bdc12c4d3f90dfcb407ec81142cd68a8"
 	}
 });
 
@@ -112,7 +112,7 @@ app.post('/SignUp', function(req,res){
 
 						mailOptions={
 							// user will see 'OMP@omp.com via mailgun.org'
-							from: 'OMPservice<OMP@omp.com>',
+							from: 'OMPservice<noreply@omp.com>',
 							to : req.body.email,
 							subject : "Please confirm your Email account",
 							html : "Hello,<br> Please Click on the link to verify your email.<br><a href="+link+">Click here to verify</a>" 
