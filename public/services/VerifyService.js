@@ -6,7 +6,7 @@ myApp.service('VerifyService', function($http){
 
     console.log("in verifyService");
 
-    $http.post('Verify',{verificationCode : verificationCode})
+    $http.post('User/Verify',{verificationCode : verificationCode})
       .success(function(response){
         console.log(response);
       })

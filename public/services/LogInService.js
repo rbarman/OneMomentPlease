@@ -4,7 +4,7 @@ myApp.service('LogInService', function($http, $location, $window, toaster){
 
   this.logIn = function(credentials){
     console.log(credentials);
-    $http.post('LogIn', credentials)
+    $http.post('User/LogIn', credentials)
       .success(function(response){
         console.log("our token : ");
         console.log(response);
