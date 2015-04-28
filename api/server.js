@@ -1,9 +1,10 @@
-//module
+//modules
 var express = require('express');
 var bodyParser = require('body-parser');
 var expressJwt = require('express-jwt');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt-nodejs');
+var config = require('./config');
 
 // used for setting the token, can be replaced with something else later
 var secret = "secret";
@@ -14,13 +15,13 @@ var app = express();
 // Use similar line below for other restricted endpoints
 app.use('/Profile', expressJwt({secret: secret})); 
 app.use(bodyParser.json());
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '../../public'));
 app.set('jwtTokenSecret', secret);
 
 var db = require("seraph")({
-	server: "http://ompdb.sb05.stations.graphenedb.com:24789/",
-	user: "omp_db",
-	pass: "H2Kny8ISWZzuYBDaZGht"
+	server : config.db_url,
+	user : config.db_user,
+	pass : config.db_password
 });
 
 app.get('/Profile', function(req, res){
