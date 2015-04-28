@@ -4,12 +4,13 @@ var bodyParser = require('body-parser');
 var expressJwt = require('express-jwt');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt-nodejs');
+
 var config = require('./config');
 
 // used for setting the token, can be replaced with something else later
-var secret = "secret";
 
 var app = express();
+var secret = config.jwt_secret;
 
 // Client can only get /Profile endpoint with a valid token
 // Use similar line below for other restricted endpoints
