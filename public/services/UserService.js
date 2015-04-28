@@ -3,7 +3,7 @@ var myApp = angular.module('myApp');
 myApp.service('UserService', function($http, $location, $window){
 
   this.getProfile = function(callback){
-    $http.get('/Profile')
+    $http.get('User/Profile')
     .success(function(data, status, headers, config){
       callback(data);
     })

@@ -3,7 +3,7 @@ var myApp = angular.module('myApp');
 myApp.service('SignUpService',function($http, $location, toaster){
   this.signUp = function(credentials){
     console.log(credentials);
-    $http.post('/SignUp', credentials)
+    $http.post('User/SignUp', credentials)
      .success(function(response){
 
         $location.url('/LogIn'); // temporary... 
