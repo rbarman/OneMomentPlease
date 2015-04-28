@@ -21,6 +21,7 @@ app.set('jwtTokenSecret', secret);
 app.get('/User/Profile', routes.users.getProfile);
 app.post('/User/SignUp', routes.users.signUp);
 app.post('/User/LogIn', routes.users.logIn);
+app.post('/User/Verify', routes.users.verifyUser);
 
 //TODO : Post Endpoint
 
