@@ -35,7 +35,7 @@ Goals :
 Usage :
 
     1. npm install
-    2. node server.js
+    2. npm start OR node api/server.js
     3. point browser to url ouputted on terminal
     
     or visit http://your-moment-today.herokuapp.com/
