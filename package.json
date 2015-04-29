@@ -8,5 +8,8 @@
     "jsonwebtoken" : "1.2.0",
     "seraph" : "0.11.2",
     "bcrypt-nodejs" : "0.0.3"
+  },
+  "scripts": {
+    "start": "node api/server.js"
   }
 }
