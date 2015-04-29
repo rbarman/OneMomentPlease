@@ -6,7 +6,7 @@ The beginning of something great.
 
 Currently hosted @ http://your-moment-today.herokuapp.com/
 
-Using: 
+Technologies Used: 
 
     Node JS
         - Express, body-parser, seraph, express-jwt, jsonwebtoken, bcrypt-nodejs modules
@@ -14,6 +14,8 @@ Using:
         - Token Based Authentication
     Neo4j
     Bootstrap
+    Testing
+        - Mocha js + Chai js
     
 Hosting
 
@@ -27,10 +29,10 @@ Learning:
     Token Based Authentication within a Single Page Application
     Graph Databases
   
-Goals :
+Future Goals :
 
-    Incorporate test automation for server and browser
-     - Grunt JS, Chai JS, Karma , etc
+    Incorporate test automation browser
+     - Karma + Angular
 
 Usage :
 
