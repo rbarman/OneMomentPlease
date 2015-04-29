@@ -5,11 +5,17 @@
     "body-parser": "1.12.2",
     "express": "^4.2.0",
     "express-jwt": "~0.2.1",
-    "jsonwebtoken" : "1.2.0",
-    "seraph" : "0.11.2",
-    "bcrypt-nodejs" : "0.0.3"
+    "jsonwebtoken": "1.2.0",
+    "seraph": "0.11.2",
+    "bcrypt-nodejs": "0.0.3"
   },
   "scripts": {
-    "start": "node api/server.js"
+    "start": "node api/server.js",
+    "test": "node_modules/mocha/bin/mocha"
+  },
+  "devDependencies": {
+    "chai": "^2.3.0",
+    "mocha": "^2.2.4",
+    "supertest": "^0.15.0"
   }
 }
