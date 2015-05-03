@@ -8,7 +8,6 @@ var secret = config.jwt_secret;
 
 var routes = {}; // routes will hold all server API routes (users, posts, etc)
 routes.users = require('./route/users');
-routes.test = require('./route/test');
 
 var app = express();
 module.exports = app;
@@ -24,9 +23,6 @@ app.set('jwtTokenSecret', secret);
 app.get('/User/Profile', routes.users.getProfile);
 app.post('/User/SignUp', routes.users.signUp);
 app.post('/User/LogIn', routes.users.logIn);
-
-// Test Endpoint
-app.get('/Test', routes.test.testThis);
 
 //TODO : Post Endpoint
 
