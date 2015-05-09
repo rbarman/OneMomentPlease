@@ -13,7 +13,20 @@ myApp.config(['$routeProvider',
     }).
     when('/LogIn',{
       templateUrl:'views/login.html',
-      controller: 'LogInCtrl'
+      controller: 'LogInCtrl',
+      // checking local storage for a token
+      // Here because controllers should not need to know about checking for tokens
+      resolve : {
+        checkForToken: function($location){
+          if(window.localStorage.token == null){
+            console.log("Client does not have a token");
+          }
+          else{
+            console.log("Client has a token");
+            $location.path('/Profile');
+          }
+        }
+      }
     }).
     when('/Profile',{
       templateUrl:'views/profile.html',
@@ -27,6 +40,13 @@ myApp.config(['$routeProvider',
       redirectTo:'/LogIn'
     });
 }]);
+
+myApp.controller('ctrl',['$scope','$location', function($scope, $location){
+  $scope.switchToProfile = function(){
+    $location.url('/Profile');
+  }
+}]);
+
 
 myApp.factory('authInterceptor', function ($rootScope, $q, $window, $location) {
   return {

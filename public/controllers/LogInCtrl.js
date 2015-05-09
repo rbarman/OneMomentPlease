@@ -1,13 +1,6 @@
 var myApp = angular.module('myApp');
-myApp.controller('LogInCtrl',['$scope','$location','LogInService','UserService', function($scope, $location,LogInService, UserService){
-  
-  // This check is not super necessary as ideally a logged in user would not go to the log in page
-  UserService.getProfile(function(response){
-    // if successful in getting profile, Our token is valid
-    // redirect to /Profile because it does not make sense to go to log in page if already logged in. 
-    $location.url('/Profile');
-  });
-  
+myApp.controller('LogInCtrl',['$scope','$location','LogInService', function($scope, $location, LogInService){
+
   // $scope.credentials will store information regarding user log in
   $scope.credentials = {
     username:'',
