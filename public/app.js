@@ -41,13 +41,6 @@ myApp.config(['$routeProvider',
     });
 }]);
 
-myApp.controller('ctrl',['$scope','$location', function($scope, $location){
-  $scope.switchToProfile = function(){
-    $location.url('/Profile');
-  }
-}]);
-
-
 myApp.factory('authInterceptor', function ($rootScope, $q, $window, $location) {
   return {
     request: function (config) {
