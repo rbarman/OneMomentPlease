@@ -8,8 +8,12 @@ myApp.service('LogInService', function($http, $location, $window, toaster){
       .success(function(response){
         console.log("our token : ");
         console.log(response);
-        $window.localStorage.token = response.token;
-        $location.url('/Profile');
+        try{
+          $window.localStorage.token = response.token;
+          $location.url('/Profile');
+        } catch(e){
+          alert('OMP is currently not working for Private Browsing on Safari!\n\nPlease turn off Private Browsing');
+        }
       })
       .error(function(response){
         console.log(response);
@@ -17,5 +21,5 @@ myApp.service('LogInService', function($http, $location, $window, toaster){
         delete $window.localStorage.token;
       });
   };
-
+  
 });
