@@ -8,6 +8,7 @@ var secret = config.jwt_secret;
 
 var routes = {}; // routes will hold all server API routes (users, posts, etc)
 routes.users = require('./route/users');
+routes.restricted = require('./route/restricted');
 
 var app = express();
 module.exports = app;
@@ -15,9 +16,13 @@ module.exports = app;
 // Client can only get /Profile endpoint with a valid token
 // Use similar line below for other restricted endpoints
 app.use('/User/Profile', expressJwt({secret: secret})); 
+app.use('/Restricted', expressJwt({secret : secret}));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '../../public'));
 app.set('jwtTokenSecret', secret);
+
+// General Restricted Endpoint
+app.get('/Restricted', routes.restricted.getRestricted);
 
 //User Endpoint
 app.get('/User/Profile', routes.users.getProfile);

@@ -7,6 +7,26 @@ myApp.config(function ($httpProvider) {
 myApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
+    // all restricted views will need to have the checkForToken resolve
+      // checking token by seeing if we can GET /Restricted
+      // currently on failure, redirecting to /LogIn view, can change to something later. 
+    when('/Restricted',{
+      templateUrl:'views/restricted.html',
+      controller:'RestrictedCtrl',
+      resolve : {
+        checkForToken: function($http, $location){
+          $http.get('/Restricted')
+          .success(function(response){
+            console.log("valid token");
+            $location.url('/Restricted');
+          })
+          .error(function(response){
+            console.log("invalid token");
+            $location.url('/LogIn');
+          })
+        }
+      }
+    }).
     when('/SignUp',{
       templateUrl:'views/signup.html',
       controller: 'SignUpCtrl'
@@ -14,23 +34,35 @@ myApp.config(['$routeProvider',
     when('/LogIn',{
       templateUrl:'views/login.html',
       controller: 'LogInCtrl',
-      // checking local storage for a token
-      // Here because controllers should not need to know about checking for tokens
       resolve : {
-        checkForToken: function($location){
-          if(window.localStorage.token == null){
-            console.log("Client does not have a token");
-          }
-          else{
-            console.log("Client has a token");
-            $location.path('/Profile');
-          }
+        checkForToken: function($http, $location){
+          $http.get('/Restricted')
+          .success(function(response){
+            console.log("valid token");
+            $location.url('/Profile');
+          })
+          .error(function(response){
+            console.log("invalid token");
+          })
         }
       }
     }).
     when('/Profile',{
       templateUrl:'views/profile.html',
-      controller: 'ProfileCtrl'
+      controller: 'ProfileCtrl',
+        resolve : {
+        checkForToken: function($http, $location){
+          $http.get('/Restricted')
+          .success(function(response){
+            console.log("valid token");
+            $location.url('/Profile');
+          })
+          .error(function(response){
+            console.log("invalid token");
+            $location.url('/LogIn');
+          })
+        }
+      }
     }).
     when('/Verify/:param', {
       templateUrl:'views/verify.html',
