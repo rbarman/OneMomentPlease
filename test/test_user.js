@@ -109,7 +109,7 @@ describe("These are tests for /User/Login", function(){
 		});
 	});
 
-	it('Should fail if server receives wrong email and password and sends 400', function(done){
+	it('Should pass if server receives wrong email and password and sends 400', function(done){
 		db.save({
 			email:"r@r.com",
 			password:bcrypt.hashSync("r")
