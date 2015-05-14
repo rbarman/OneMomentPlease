@@ -14,7 +14,7 @@ myApp.config(['$routeProvider',
       templateUrl:'views/restricted.html',
       controller:'RestrictedCtrl',
       resolve : {
-        checkForToken: function($http, $location){
+        checkForToken: function($http, $location, toaster){
           $http.get('/Restricted')
           .success(function(response){
             console.log("valid token");
@@ -22,7 +22,9 @@ myApp.config(['$routeProvider',
           })
           .error(function(response){
             console.log("invalid token");
+            toaster.pop('error', "Failure", "You must be logged in to access Restricted");
             $location.url('/LogIn');
+
           })
         }
       }
@@ -51,7 +53,7 @@ myApp.config(['$routeProvider',
       templateUrl:'views/profile.html',
       controller: 'ProfileCtrl',
         resolve : {
-        checkForToken: function($http, $location){
+        checkForToken: function($http, $location, toaster){
           $http.get('/Restricted')
           .success(function(response){
             console.log("valid token");
@@ -59,6 +61,7 @@ myApp.config(['$routeProvider',
           })
           .error(function(response){
             console.log("invalid token");
+            toaster.pop('error', "Failure", "You must be logged in to access Profile");
             $location.url('/LogIn');
           })
         }
