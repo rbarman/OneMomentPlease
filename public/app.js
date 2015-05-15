@@ -7,6 +7,10 @@ myApp.config(function ($httpProvider) {
 myApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
+    when('/',{
+      templateUrl:'views/landing_page.html',
+      controller:'LandingPageCtrl'
+    }).
     // all restricted views will need to have the checkForToken resolve
       // checking token by seeing if we can GET /Restricted
       // currently on failure, redirecting to /LogIn view, can change to something later. 

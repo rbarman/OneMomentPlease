@@ -1,0 +1,37 @@
+<html>
+<body>
+	<div ng-controller = "LandingPageCtrl">
+
+		<h1 class = "text-center" > One Moment Please </h1>
+
+		<br><br>
+		<div class = "text-center"> <!-- TODO : Center vertically?-->
+			<p>One Moment Please is a new social platform that brings a new perspective. <br>
+			We aim to foster higher quality conversatations and interactions among friends. <br> <br>
+
+			One Moment Please is currently in development. Join our mailing list for updates
+			</p>
+		</div>
+
+		<br>
+		<div class="col-md-4"></div>		
+		<div class="col-md-4">
+			<form name = "mailingListForm" ng-submit = "addToList()" novalidate>
+				<!-- Email Field -->
+				<div class="row input-group" ng-class="{ 'has-error' : mailingListForm.email.$invalid && !mailingListForm.email.$pristine }">
+
+					<span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+					<input type="email" name = "email" class="form-control" ng-model="email" required placeHolder="Email"/>
+				</div>
+				<p ng-show="mailingListForm.email.$invalid && !mailingListForm.email.$pristine" class="help-block">Enter a valid email.</p>
+
+				<div class = "row">
+					<button type = "submit" class = "btn btn-primary btn-block" ng-disabled="mailingListForm.$invalid"> Join</button>
+				</div>
+			</form>
+		</div>
+		<div class="col-md-4"></div>
+
+	</div>
+</body>
+</html>

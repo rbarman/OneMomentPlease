@@ -16,3 +16,7 @@ h1{
 	display: block!important;
 	visibility: hidden;
 }
+
+p{
+	font-family: Century Gothic, sans-serif;
+}

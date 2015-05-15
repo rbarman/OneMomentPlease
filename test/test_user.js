@@ -13,7 +13,7 @@ var db = require("seraph")({
 describe("These are tests for /User/SignUp", function(){
 	// Clear the databse before each test in this block. 
 	beforeEach(function(done) {
-		var cypher = "MATCH(n) delete n";
+		var cypher = "MATCH(n:User) delete n";
 		db.query(cypher, function(err, result) {
 			if(err){
 				console.log("unable to delete all nodes in the db!");

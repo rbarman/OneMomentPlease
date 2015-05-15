@@ -9,6 +9,7 @@ var secret = config.jwt_secret;
 var routes = {}; // routes will hold all server API routes (users, posts, etc)
 routes.users = require('./route/users');
 routes.restricted = require('./route/restricted');
+routes.mailingList = require('./route/mailingList');
 
 var app = express();
 module.exports = app;
@@ -28,6 +29,9 @@ app.get('/Restricted', routes.restricted.getRestricted);
 app.get('/User/Profile', routes.users.getProfile);
 app.post('/User/SignUp', routes.users.signUp);
 app.post('/User/LogIn', routes.users.logIn);
+
+// MailingList Endpoint --
+app.post('/MailingList', routes.mailingList.addToList);
 
 //TODO : Post Endpoint
 
