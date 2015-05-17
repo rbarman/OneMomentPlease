@@ -1,5 +1,5 @@
 var myApp = angular.module('myApp');
-myApp.controller('LogInCtrl',['$scope','$location','LogInService', function($scope, $location, LogInService){
+myApp.controller('LogInCtrl',['$scope','$location','UserService', function($scope, $location, LogInService){
 
   // $scope.credentials will store information regarding user log in
   $scope.credentials = {
@@ -9,7 +9,7 @@ myApp.controller('LogInCtrl',['$scope','$location','LogInService', function($sco
   $scope.logIn = function() {
     if ($scope.userForm.$valid) {
         console.log("form to login is valid");
-        LogInService.logIn($scope.credentials);
+        UserService.logIn($scope.credentials);
       }
   };
 

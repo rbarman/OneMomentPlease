@@ -1,6 +1,6 @@
 var myApp = angular.module('myApp');
 
-myApp.controller('SignUpCtrl',['$scope','SignUpService', function($scope, SignUpService) {
+myApp.controller('SignUpCtrl',['$scope','UserService', function($scope, UserService) {
 
   // TODO : Find a better place to store this + make scope.years more dynamic(?)
   $scope.months = ["Jan.", "Feb.", "Mar.", "Apr.", "May" , "Jun.", "Jul.", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."];
@@ -25,6 +25,6 @@ myApp.controller('SignUpCtrl',['$scope','SignUpService', function($scope, SignUp
 
 	$scope.createNewAccount = function(){
     $scope.credentials.dob = $scope.selectedMonth + ' ' + $scope.selectedDay + ' ' + $scope.selectedYear;
-    SignUpService.signUp($scope.credentials);
+    UserService.signUp($scope.credentials);
 	};
 }]);
