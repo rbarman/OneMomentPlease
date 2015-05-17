@@ -1,5 +1,5 @@
 var myApp = angular.module('myApp');
-myApp.controller('LogInCtrl',['$scope','$location','UserService', function($scope, $location, LogInService){
+myApp.controller('LogInCtrl',['$scope','$location','UserService', function($scope, $location, UserService){
 
   // $scope.credentials will store information regarding user log in
   $scope.credentials = {
