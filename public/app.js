@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp',['ngRoute','toaster']);
+var myApp = angular.module('myApp',['ngRoute','toaster','ui.bootstrap']);
 
 myApp.config(function ($httpProvider) {
   $httpProvider.interceptors.push('authInterceptor');
