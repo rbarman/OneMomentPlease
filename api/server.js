@@ -14,19 +14,18 @@ routes.mailingList = require('./route/mailingList');
 var app = express();
 module.exports = app;
 
-// Client can only get /Profile endpoint with a valid token
-// Use similar line below for other restricted endpoints
-app.use('/User/Profile', expressJwt({secret: secret})); 
-app.use('/Restricted', expressJwt({secret : secret}));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '../../public'));
-app.set('jwtTokenSecret', secret);
+
+// All restricted endpoints must have -> expressJwt({secret : secret})
+// expresJwt will check that the client sends a valid token in the request
+// valid tokens are necessary to execute.
 
 // General Restricted Endpoint
-app.get('/Restricted', routes.restricted.getRestricted);
+app.get('/Restricted', expressJwt({secret : secret}),routes.restricted.getRestricted);
 
 //User Endpoint
-app.get('/User/Profile', routes.users.getProfile);
+app.get('/User/Profile',expressJwt({secret : secret}), routes.users.getProfile);
 app.post('/User/SignUp', routes.users.signUp);
 app.post('/User/LogIn', routes.users.logIn);
 
