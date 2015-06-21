@@ -1,9 +1,9 @@
 var myApp = angular.module('myApp');
-myApp.controller('LandingPageCtrl',['$scope','LandingPageService', function($scope, LandingPageService){
+myApp.controller('LandingPageCtrl',['LandingPageService', function(LandingPageService){
 
-	$scope.email = '';
+	this.email = '';
 
-	$scope.addToList = function(){
+	this.addToList = function(){
 		if ($scope.mailingListForm.$valid) {
 			LandingPageService.addEmail($scope.email);
      	}

@@ -1,6 +1,6 @@
 <html>
 <body>
-	<div ng-controller = "LandingPageCtrl">
+	<div ng-controller = "LandingPageCtrl as ctrl">
 
 		<h1 class = "text-center" > One Moment Please </h1>
 
@@ -16,12 +16,12 @@
 		<br>
 		<div class="col-md-4"></div>		
 		<div class="col-md-4">
-			<form name = "mailingListForm" ng-submit = "addToList()" novalidate>
+			<form name = "mailingListForm" ng-submit = "ctrl.addToList()" novalidate>
 				<!-- Email Field -->
 				<div class="row input-group" ng-class="{ 'has-error' : mailingListForm.email.$invalid && !mailingListForm.email.$pristine }">
 
 					<span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
-					<input type="email" name = "email" class="form-control" ng-model="email" required placeHolder="Email"/>
+					<input type="email" name = "email" class="form-control" ng-model="ctrl.email" required placeHolder="Email"/>
 				</div>
 				<p ng-show="mailingListForm.email.$invalid && !mailingListForm.email.$pristine" class="help-block">Enter a valid email.</p>
 

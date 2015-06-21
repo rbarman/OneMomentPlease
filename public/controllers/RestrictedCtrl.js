@@ -1,6 +1,4 @@
 var myApp = angular.module('myApp');
-myApp.controller('RestrictedCtrl',['$scope', function($scope){
-
-  $scope.message = "You can see this";
-
+myApp.controller('RestrictedCtrl',[ function(){
+	console.log("in restricted ctrl")
 }]);
