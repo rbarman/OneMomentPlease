@@ -4,7 +4,7 @@
 </head>
 
 <body>
-	<div ng-controller = "SignUpCtrl" class = "container">
+	<div ng-controller = "SignUpCtrl as ctrl" class = "container">
 
 		<div class = "container">
 
@@ -17,36 +17,36 @@
 				<!-- center column -->
 				<div class="col-md-4">
 
-					<form ng-submit="submit(createNewAccount(credentials))">
+					<form ng-submit="submit(ctrl.createNewAccount(ctrl.credentials))">
 						<!-- TODO : form validation -->
 						<div class="row">
-							<input type="text" class="form-control" ng-model="credentials.firstName" placeHolder="First Name"/>
+							<input type="text" class="form-control" ng-model="ctrl.credentials.firstName" placeHolder="First Name"/>
 						</div>
 
 						<div class="row">
-							<input type="text" class="form-control" ng-model="credentials.lastName" placeHolder="Last Name"/>
+							<input type="text" class="form-control" ng-model="ctrl.credentials.lastName" placeHolder="Last Name"/>
 						</div>
 
 						<div class="row">
-							<input type="email" class="form-control" ng-model="credentials.email" placeHolder = "Email" />
+							<input type="email" class="form-control" ng-model="ctrl.credentials.email" placeHolder = "Email" />
 
 						</div>
 						<div class = "row">
-							<input type="password" class="form-control" ng-model="credentials.password" placeHolder = "Password" />
+							<input type="password" class="form-control" ng-model="ctrl.credentials.password" placeHolder = "Password" />
 						</div>
 
 						<br>
 
 						<div class = "row">
 							<label> Date Of Birth </label>
-							<select ng-model="selectedMonth" ng-options="label for label in months"></select> 
-							<select ng-model="selectedDay" ng-options="label for label in days"></select> 
-							<select ng-model="selectedYear" ng-options="label for label in years"></select> 
+							<select ng-model="ctrl.selectedMonth" ng-options="label for label in ctrl.months"></select> 
+							<select ng-model="ctrl.selectedDay" ng-options="label for label in ctrl.days"></select> 
+							<select ng-model="ctrl.selectedYear" ng-options="label for label in ctrl.years"></select> 
 
 						</div>
 						
 						<div class = "row">
-							<select class="form-control" ng-model="credentials.gender">
+							<select class="form-control" ng-model="ctrl.credentials.gender">
 								<option value="" disabled selected>Gender</option>
 								<option value="Male">Male</option>
 								<option value="Female">Female</option>
@@ -57,7 +57,7 @@
 
 						<div class = "row">
 							<!--TODO : change option to an int if we will store questions as ints-->
-							<select class="form-control" ng-model="credentials.question">
+							<select class="form-control" ng-model="ctrl.credentials.question">
 								<option value="" disabled selected> Choose a Security Question </option>
 								<option value ="In what town was your first job?"> In what town was your first job?</option>
 								<option value = "In what city or town did your mother and father meet?"> In what city or town did your mother and father meet? </option>
@@ -68,7 +68,7 @@
 						<!-- <br> -->
 
 						<div class = "row">
-							<input type="text" class="form-control" ng-model="credentials.answer" placeHolder = "Your Answer" />
+							<input type="text" class="form-control" ng-model="ctrl.credentials.answer" placeHolder = "Your Answer" />
 						</div>
 
 						<br>
