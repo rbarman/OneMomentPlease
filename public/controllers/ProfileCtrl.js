@@ -1,6 +1,7 @@
 var myApp = angular.module('myApp');
 myApp.controller('ProfileCtrl',[ 'UserService', function(UserService){
 
+  this.greetings = "hello";
   //TODO : make a failure callback,
   // UserService.getProfile currently goes to /LogIn on failure. This might not be wanted in future
 

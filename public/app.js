@@ -55,6 +55,7 @@ myApp.config(['$routeProvider',
     }).
     when('/Profile',{
       templateUrl:'views/profile.html',
+      controllerAs:'ctrl',
       controller: 'ProfileCtrl',
         resolve : {
         checkForToken: function($http, $location, toaster){
