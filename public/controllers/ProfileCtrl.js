@@ -1,6 +1,5 @@
 var myApp = angular.module('myApp');
-myApp.controller('ProfileCtrl',['$scope', 'UserService', function($scope, UserService){
-  $scope.message = "default";
+myApp.controller('ProfileCtrl',[ 'UserService', function(UserService){
 
   //TODO : make a failure callback,
   // UserService.getProfile currently goes to /LogIn on failure. This might not be wanted in future
@@ -9,14 +8,14 @@ myApp.controller('ProfileCtrl',['$scope', 'UserService', function($scope, UserSe
     console.log("success callback for UserService.getProfile()");
     console.log(response[0]);
 
-    $scope.firstName = response[0].firstName;
-    $scope.lastName = response[0].lastName;
-    $scope.email = response[0].email;
-    $scope.dob = response[0].dob;
-    $scope.gender = response[0].gender;
+    this.firstName = response[0].firstName;
+    this.lastName = response[0].lastName;
+    this.email = response[0].email;
+    this.dob = response[0].dob;
+    this.gender = response[0].gender;
   });
 
-  $scope.logOut = function(){
+  this.logOut = function(){
     UserService.logOut();
   };
 

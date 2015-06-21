@@ -1,5 +1,5 @@
 <html>
-<body ng-controller = "ProfileCtrl">
+<body ng-controller = "ProfileCtrl as ctrl">
 
 	<div class = "container">
 
@@ -7,31 +7,31 @@
 
 		<div class = "row">
 		    <div class="col-sm-2"> First Name : </div>
-		    <div class="col-sm-2"> {{firstName}} </div>
+		    <div class="col-sm-2"> {{ctrl.firstName}} </div>
 		</div>
 
 		<div class = "row">
 		    <div class="col-sm-2"> Last Name : </div>
-		    <div class="col-sm-2"> {{lastName}} </div>
+		    <div class="col-sm-2"> {{ctrl.lastName}} </div>
 		</div>
 
 		<div class = "row">
 		    <div class="col-sm-2"> Email : </div>
-		    <div class="col-sm-2"> {{email}} </div>
+		    <div class="col-sm-2"> {{ctrl.email}} </div>
 		</div>
 
 		<div class = "row">
 		    <div class="col-sm-2"> Gender : </div>
-		    <div class="col-sm-2"> {{gender}} </div>
+		    <div class="col-sm-2"> {{ctrl.gender}} </div>
 		</div>
 
 		<div class = "row">
 		    <div class="col-sm-2"> DOB : </div>
-		    <div class="col-sm-2"> {{dob}} </div>
+		    <div class="col-sm-2"> {{ctrl.dob}} </div>
 		</div>
 
 		<div class = "row">
-			<button type="button" class="btn btn-link center-block" ng-click="logOut()">Log Out</button>
+			<button type="button" class="btn btn-link center-block" ng-click="ctrl.logOut()">Log Out</button>
 		</div>
 	</div>
 </body>
