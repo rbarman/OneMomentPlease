@@ -5,7 +5,7 @@
 </head>
 
 <body>
-	<div ng-controller = "LogInCtrl">
+	<div ng-controller = "LogInCtrl as ctrl">
 
 		<h1 class = "text-center"> One Moment Please </h1>
 
@@ -15,20 +15,20 @@
 
 		<div class="col-md-4">
 
-			<form name = "userForm" ng-submit = "logIn()" novalidate>
+			<form name = "userForm" ng-submit = "ctrl.logIn()" novalidate>
 
 				<!-- Email Form -->
 				<div class="row input-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
 
 					<span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
-					<input type="email" name = "email" class="form-control" ng-model="credentials.email" required placeHolder="Email"/>
+					<input type="email" name = "email" class="form-control" ng-model="ctrl.credentials.email" required placeHolder="Email"/>
 				</div>
 				<p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a valid email.</p>
 
 				<!-- Password Form -->
 				<div class="row input-group" ng-class="{ 'has-error' : userForm.password.$invalid && !userForm.password.$pristine }">
 				  	<span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
-					<input type="password" name = "password" class="form-control" ng-model="credentials.password" required placeHolder="Password"/>
+					<input type="password" name = "password" class="form-control" ng-model="ctrl.credentials.password" required placeHolder="Password"/>
 				</div>
 				<p ng-show="userForm.password.$invalid && !userForm.password.$pristine" class="help-block">A password is required.</p>
 

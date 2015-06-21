@@ -6,7 +6,7 @@ myApp.controller('ProfileCtrl',['$scope', 'UserService', function($scope, UserSe
   // UserService.getProfile currently goes to /LogIn on failure. This might not be wanted in future
 
   UserService.getProfile(function(response){
-    console.log("success callback");
+    console.log("success callback for UserService.getProfile()");
     console.log(response[0]);
 
     $scope.firstName = response[0].firstName;

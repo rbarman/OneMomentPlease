@@ -1,16 +1,14 @@
 var myApp = angular.module('myApp');
-myApp.controller('LogInCtrl',['$scope','$location','UserService', function($scope, $location, UserService){
+myApp.controller('LogInCtrl',['$location','UserService', function($location, UserService){
 
-  // $scope.credentials will store information regarding user log in
-  $scope.credentials = {
+  // this.credentials will store information regarding user log in
+  this.credentials = {
     username:'',
     password:''
   };
-  $scope.logIn = function() {
-    if ($scope.userForm.$valid) {
-        console.log("form to login is valid");
-        UserService.logIn($scope.credentials);
-      }
+  this.logIn = function() {
+    // user can not click on log in button unless the form is valid
+    UserService.logIn(this.credentials);
   };
 
 }]);
