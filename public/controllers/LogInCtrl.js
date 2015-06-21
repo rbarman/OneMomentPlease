@@ -13,8 +13,4 @@ myApp.controller('LogInCtrl',['$scope','$location','UserService', function($scop
       }
   };
 
-  $scope.switchToSignUp = function(){
-    $location.url('/SignUp');
-  };
-
 }]);
