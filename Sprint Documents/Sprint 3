@@ -1,0 +1,20 @@
+                                                Sprint 3
+                                               (5/24/2015)
+                                            
+                                          
+  We should be working mainly on these 2 areas for now:
+        -User Profile (UI aesthetics)
+        -Search Feature 
+        
+        
+- User Profile
+    -User Photo (Allow to upload/change photo; store in file on server end)
+    -User Information Display
+    
+    
+    
+-Search Feature
+    -Populate Results that lead to User Profiles
+    -Match users on the basis of First Name, Last Name
+    
+
