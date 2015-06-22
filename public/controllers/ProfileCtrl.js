@@ -11,7 +11,6 @@ myApp.controller('ProfileCtrl',['UserService', function(UserService){
     console.log(response[0]);
 
     that.firstName = response[0].firstName;
-    console.log("that : " + that.firstName + " !");
     that.lastName = response[0].lastName;
     that.email = response[0].email;
     that.dob = response[0].dob;
