@@ -9,6 +9,7 @@ myApp.config(['$routeProvider',
     $routeProvider.
     when('/',{
       templateUrl:'views/landing_page.html',
+      controllerAs:'ctrl',
       controller:'LandingPageCtrl'
     }).
     // all restricted views will need to have the checkForToken resolve
@@ -17,6 +18,7 @@ myApp.config(['$routeProvider',
     when('/Restricted',{
       templateUrl:'views/restricted.html',
       controller:'RestrictedCtrl',
+      controllerAs:'ctrl',
       resolve : {
         checkForToken: function($http, $location, toaster){
           $http.get('/Restricted')
@@ -35,10 +37,12 @@ myApp.config(['$routeProvider',
     }).
     when('/SignUp',{
       templateUrl:'views/signup.html',
+      controllerAs:'ctrl',
       controller: 'SignUpCtrl'
     }).
     when('/LogIn',{
       templateUrl:'views/login.html',
+      controllerAs:'ctrl',
       controller: 'LogInCtrl',
       resolve : {
         checkForToken: function($http, $location){
@@ -74,7 +78,8 @@ myApp.config(['$routeProvider',
     }).
     when('/Verify/:param', {
       templateUrl:'views/verify.html',
-      controller: 'VerifyCtrl'
+      controller: 'VerifyCtrl',
+      controllerAs:'ctrl'
     }).
     otherwise({
       redirectTo:'/LogIn'
